@@ -85,6 +85,25 @@ document.addEventListener('DOMContentLoaded', () => {
     let animationFrameId = null;
     let isScrollActive = false;
 
+    // Detecção dinâmica de dispositivo para estratégia de economia de GPU Mobile
+    let isMobile = window.innerWidth <= 768;
+    
+    // Atualizar mecânica responsiva no giro/virada do celular
+    window.addEventListener('resize', () => {
+        const wasMobile = isMobile;
+        isMobile = window.innerWidth <= 768;
+        
+        // Alternância inteligente on-the-fly
+        if (isMobile && !wasMobile) {
+            video.loop = true;
+            video.play().catch(() => {});
+        } else if (!isMobile && wasMobile) {
+            video.pause();
+            video.loop = false;
+            updateVideoFrame(currentFraction); // Devolve a roda do mouse pro PC
+        }
+    });
+
     // Calcula a fração do scroll do usuário dentro da seção hero
     function getScrollFraction() {
         const rect = heroSection.getBoundingClientRect();
@@ -132,6 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Atualiza o frame do vídeo de acordo com o progresso do scroll (Reverso)
     function updateVideoFrame(fraction) {
         if (!video.duration || isNaN(video.duration)) return;
+        
+        // OTIMIZAÇÃO MÁXIMA MOBILE: Pular a manipulação forçada de quadros.
+        // O celular vai tocar o vídeo sozinho no modo livre, liberando o processador de scroll.
+        if (isMobile) return;
         
         // Modo Reverso: (1 - scrollFraction)
         const targetTime = video.duration * (1 - fraction);
@@ -204,6 +227,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const onFirstSeek = () => {
             video.classList.add('ready');
             video.removeEventListener('seeked', onFirstSeek);
+            
+            // SE FOR CELULAR: Solta a reprodução natural super fluida (Auto-loop), cortando a briga com o Scroll
+            if (isMobile) {
+                video.loop = true;
+                video.play().catch(e => console.log('Autoplay no mobile engatilhado:', e));
+            }
             
             // Registra as atualizações subsequentes no scroll atreladas ao renderLoop
             setupScrollUpdates();
