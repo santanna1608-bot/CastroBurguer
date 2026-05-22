@@ -34,13 +34,12 @@
 }
 
 html {
-    scroll-behavior: smooth;
     background-color: var(--bg-dark);
     color: var(--text-main);
     font-family: var(--font-body);
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
-    /* REMOVIDO: overflow-x: hidden (Causa quebra do position: sticky no Chrome) */
+    /* REMOVIDO: scroll-behavior: smooth; (Causa stuttering e conflito de repaint no JS scrub) */
 }
 
 body {

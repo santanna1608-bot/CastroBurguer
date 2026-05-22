@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Valores para a interpolação linear (LERP) para suavidade cinematográfica
     let targetFraction = 0;
     let currentFraction = 0;
-    const easeFactor = 0.08; // Fator de suavização (quanto menor, mais suave/lento o deslize)
+    const easeFactor = 0.12; // Aumentado para resposta mais rápida e menos flutuação pesada (menos Lag)
     let animationFrameId = null;
     let isScrollActive = false;
 
@@ -106,8 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Cálculo do LERP (Linear Interpolation)
         const diff = targetFraction - currentFraction;
         
-        // Se a diferença for minúscula, estabiliza e encerra o loop para economizar CPU
-        if (Math.abs(diff) < 0.0001) {
+        // Estabilização mais tolerante para encerramento precoce do motor
+        if (Math.abs(diff) < 0.001) {
             currentFraction = targetFraction;
             updateVideoFrame(currentFraction);
             updateTexts(currentFraction);
@@ -126,17 +126,23 @@ document.addEventListener('DOMContentLoaded', () => {
         animationFrameId = requestAnimationFrame(renderLoop);
     }
 
+    // Variável para armazenar o último tempo desenhado
+    let lastVideoTime = -1;
+
     // Atualiza o frame do vídeo de acordo com o progresso do scroll (Reverso)
     function updateVideoFrame(fraction) {
         if (!video.duration || isNaN(video.duration)) return;
         
         // Modo Reverso: (1 - scrollFraction)
-        // No topo da página (fraction = 0) o vídeo estará no final (duration)
-        // No fim da hero (fraction = 1) o vídeo estará no início (0)
         const targetTime = video.duration * (1 - fraction);
         
-        // Ajusta o tempo do vídeo.
-        video.currentTime = targetTime;
+        // OTIMIZAÇÃO CRÍTICA (FPS THROTTLE): O vídeo MP4 sofre para decodificar frações micro-segundos.
+        // Nós só atualizamos o player se a diferença for maior que 0.04 segundos (equivale à percepção ocular de ~24fps).
+        // Isso elimina os travamentos do processador!
+        if (Math.abs(targetTime - lastVideoTime) > 0.04) {
+            video.currentTime = targetTime;
+            lastVideoTime = targetTime;
+        }
     }
 
     // Atualiza as opacidades dos textos que descrevem os passos do hambúrguer
