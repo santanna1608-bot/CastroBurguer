@@ -221,20 +221,21 @@ document.addEventListener('DOMContentLoaded', () => {
         targetFraction = fraction;
         currentFraction = fraction;
 
-        // Ouvir uma ÚNICA VEZ a flag 'seeked' para o primeiro seek.
-        // Isso garante que o vídeo só receberá a classe .ready (mudando opacidade de 0 para 1)
-        // quando o primeiro frame correspondente ao scroll correto for devidamente carregado.
+        // BYPASS DO CELULAR: Não precisamos esperar nenhum scrub de frame. 
+        // Acende a tela imediatamente e aperta o play!
+        if (isMobile) {
+            video.classList.add('ready'); // Tira a tela preta
+            video.loop = true;
+            video.play().catch(e => console.log('Autoplay mobile prev:', e));
+            setupScrollUpdates();
+            updateTexts(fraction);
+            return;
+        }
+
+        // FLUXO DO COMPUTADOR: Espera o primeiro scrub da roda do mouse para acender.
         const onFirstSeek = () => {
             video.classList.add('ready');
             video.removeEventListener('seeked', onFirstSeek);
-            
-            // SE FOR CELULAR: Solta a reprodução natural super fluida (Auto-loop), cortando a briga com o Scroll
-            if (isMobile) {
-                video.loop = true;
-                video.play().catch(e => console.log('Autoplay no mobile engatilhado:', e));
-            }
-            
-            // Registra as atualizações subsequentes no scroll atreladas ao renderLoop
             setupScrollUpdates();
         };
 
