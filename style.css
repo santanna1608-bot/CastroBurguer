@@ -1157,7 +1157,6 @@ button {
     .mobile-menu-toggle.open .bar:nth-child(3) {
         transform: rotate(-45deg) translate(5px, -6px);
     }
-    
     /* Hero Section Mobile */
     .hero-video {
         object-position: 85% center;
@@ -1165,6 +1164,10 @@ button {
         /* Afastamento da câmera (Zoom Out) para afinar o hambúrguer */
         transform: scale(0.85);
         transform-origin: 85% center; /* Fixa a redução exatamente no ponto do hambúrguer */
+        
+        /* Derrete apenas a lateral esquerda da foto, mascarando o corte reto do arquivo original */
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 25%, black 100%);
     }
 
     .hero-step {
