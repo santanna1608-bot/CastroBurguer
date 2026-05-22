@@ -1160,7 +1160,15 @@ button {
     
     /* Hero Section Mobile */
     .hero-video {
-        object-position: 85% center; /* Aponta a câmera do celular para o lado direito do vídeo (onde o hambúrguer está fisicamente localizado na filmagem) */
+        object-position: 85% center;
+        
+        /* Fastamento da câmera (Zoom Out) para afinar o hambúrguer */
+        transform: scale(0.85);
+        transform-origin: 85% center; /* Fixa a redução exatamente no ponto do hambúrguer */
+        
+        /* Dissolve as bordas quadradas do vídeo no fundo preto do site, criando uma ilusão de tela infinita! */
+        -webkit-mask-image: radial-gradient(ellipse 65% 70% at 85% center, black 60%, transparent 100%);
+        mask-image: radial-gradient(ellipse 65% 70% at 85% center, black 60%, transparent 100%);
     }
 
     .hero-step {
