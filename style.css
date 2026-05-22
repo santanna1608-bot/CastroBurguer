@@ -1,0 +1,1260 @@
+/* --------------------------------------------------------------------------
+   Castro Burguer - Premium Landing Page CSS
+   Design: Escuro, Minimalista, Assimétrico e Glassmorphism
+   -------------------------------------------------------------------------- */
+
+/* 1. Variáveis & Reset */
+:root {
+    --bg-dark: #050505;
+    --bg-card: rgba(20, 20, 20, 0.85); /* Escurecido para melhor contraste */
+    --bg-card-hover: rgba(30, 30, 30, 0.95);
+    --border-glass: rgba(255, 255, 255, 0.12);
+    --border-glass-hover: rgba(255, 255, 255, 0.25);
+    
+    --primary: #e2a857;
+    --primary-rgb: 226, 168, 87;
+    --primary-hover: #f1b96a;
+    --accent: #ff6600;
+    
+    --text-main: #f5f5f7;
+    --text-muted: #a1a1aa; /* Mais claro para as labels */
+    --text-white: #ffffff;
+    
+    --font-title: 'Outfit', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+    
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --blur-intensity: blur(20px) saturate(180%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    /* REMOVIDO: overflow-x: hidden (Causa quebra do position: sticky no Chrome) */
+}
+
+body {
+    min-height: 100vh;
+    /* Adicionando um container wrapper sem quebrar o HTML pode ser necessário no futuro, 
+       mas body limpo garante o Sticky da seção hero */
+}
+
+/* Evitar scroll horizontal indesejado nas margens */
+#main-header, section, footer {
+    max-width: 100vw;
+    overflow-x: clip; /* Clip oculta os elementos excedentes sem quebrar o scroll sticky de ancestrais */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+/* 2. Utilitários & Layouts */
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+}
+
+/* Botões Premium */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: var(--transition-smooth);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #000000;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(226, 168, 87, 0.2);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-glass-hover);
+    backdrop-filter: var(--blur-intensity);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--text-main);
+    transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.8rem;
+}
+
+.btn-lg {
+    padding: 1.1rem 3rem;
+    font-size: 1rem;
+}
+
+.btn-block {
+    display: flex;
+    width: 100%;
+}
+
+/* Efeito Vidro (Glassmorphism) */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: var(--blur-intensity);
+    -webkit-backdrop-filter: var(--blur-intensity);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-glass-hover);
+}
+
+/* Badges e Títulos de Seção */
+.badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    background: rgba(226, 168, 87, 0.1);
+    border: 1px solid rgba(226, 168, 87, 0.2);
+    border-radius: 100px;
+    color: var(--primary);
+    font-family: var(--font-title);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+}
+
+.section-badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 100px;
+    color: var(--text-muted);
+    font-family: var(--font-title);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-title {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text-white);
+}
+
+.title-underline {
+    width: 60px;
+    height: 3px;
+    background: var(--primary);
+    margin: 1.5rem auto;
+}
+
+.title-underline.left {
+    margin: 1.5rem 0;
+}
+
+.section-description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* 3. Header / Menu de Topo */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(5, 5, 5, 0.5);
+    backdrop-filter: var(--blur-intensity);
+    -webkit-backdrop-filter: var(--blur-intensity);
+    border-bottom: 1px solid var(--border-glass);
+    transition: var(--transition-smooth);
+}
+
+.main-header.scrolled {
+    background: rgba(5, 5, 5, 0.85);
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+.header-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem; /* Mais espaçamento entre ícone e texto */
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 56px; /* Aumento expressivo do diâmetro para melhorar a visibilidade */
+    width: 56px;
+    object-fit: cover;
+    border-radius: 50%; /* Círculo perfeito estilo Avatar premium */
+}
+
+.logo-text {
+    font-family: var(--font-title);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--text-white);
+    letter-spacing: -0.5px;
+}
+
+.logo-accent {
+    color: var(--primary);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    position: relative;
+    padding: 0.25rem 0;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: var(--transition-smooth);
+}
+
+.nav-link.active::after, .nav-link:hover::after {
+    width: 100%;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    width: 30px;
+}
+
+.mobile-menu-toggle .bar {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-white);
+    transition: var(--transition-smooth);
+}
+
+/* 4. Seção Hero (Apple-style Scroll Video) */
+.hero {
+    height: 500vh; /* Altura generosa para o scroll de vídeo (calibrado) */
+    position: relative;
+    background-color: #000;
+}
+
+.hero-sticky-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center; /* Centralizado no mobile */
+    z-index: 1;
+    opacity: 0; /* Começa invisível para evitar o flash antes do carregamento */
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-video.ready {
+    opacity: 1; /* Revelado somente quando o primeiro frame for decodificado */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(5, 5, 5, 0.3) 0%, rgba(5, 5, 5, 0.85) 80%),
+                linear-gradient(to bottom, rgba(5, 5, 5, 0.6) 0%, rgba(5, 5, 5, 0.1) 20%, rgba(5, 5, 5, 0.85) 90%);
+    z-index: 2;
+}
+
+.hero-content-container {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centralizado no mobile */
+}
+
+/* Passos do Hero (Ativados e desativados dinamicamente) */
+.hero-step {
+    position: absolute;
+    width: 100%;
+    max-width: 290px; /* Micro card: Foco 100% na foto/vídeo */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(40px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.6s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-step.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Card Premium Glassmorphic (Compacto) */
+.hero-card {
+    background: rgba(22, 17, 12, 0.75); 
+    backdrop-filter: blur(35px) saturate(160%);
+    -webkit-backdrop-filter: blur(35px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem; /* Margens mínimas para criar um card fino */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title {
+    font-family: var(--font-title);
+    font-size: 2.5rem; /* Menor */
+    font-weight: 850;
+    line-height: 1.1;
+    color: var(--text-white);
+    letter-spacing: -1px;
+    margin-bottom: 0.8rem;
+}
+
+.hero-section-title {
+    font-family: var(--font-title);
+    font-size: 2.3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-white);
+    letter-spacing: -1px;
+    margin-bottom: 0.8rem;
+}
+
+.hero-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+}
+
+/* Métricas na Base do Card */
+.hero-card-metrics {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 2.5rem; 
+    border-top: none; 
+    padding-top: 1rem;
+    margin-bottom: 0;
+}
+
+.metric-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.metric-value {
+    font-family: var(--font-title);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #f7b731; /* Amarelo da referência Siri Burger */
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+}
+
+.metric-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5); /* Cinza leve */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.hero-actions .btn {
+    flex: 1;
+}
+
+/* Indicador de Mouse/Scroll no Card */
+.hero-card .scroll-indicator {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.hero-card .scroll-indicator .text {
+    font-family: var(--font-title);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-white);
+}
+
+.hero-card .scroll-indicator .mouse {
+    width: 26px;
+    height: 42px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+}
+
+.hero-card .scroll-indicator .wheel {
+    width: 4px;
+    height: 8px;
+    background-color: var(--primary);
+    border-radius: 4px;
+    animation: scrollWheel 1.5s infinite;
+}
+
+@keyframes scrollWheel {
+    0% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(8px); opacity: 0.3; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Custom Media Query para o Hero Premium Assimétrico no Desktop */
+@media (min-width: 992px) {
+    .hero-video {
+        /* Preenchimento absoluto de cinema sem vinhetas */
+        object-fit: cover;
+        object-position: 70% center; /* Foco na banda direita da tela, liberando o máximo possível do centro */
+        width: 100%;
+        height: 100%;
+        transform: none; /* Zoom nativo obrigatório do cover sem escalas falsas */
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+    
+    .hero-overlay {
+        /* Overlay mais intenso na esquerda para cobrir texturas, levemente degradê para não escurecer o vídeo direito */
+        background: linear-gradient(90deg, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.8) 35%, rgba(5, 5, 5, 0.05) 65%, transparent 100%),
+                    linear-gradient(to bottom, rgba(5, 5, 5, 0.6) 0%, transparent 15%, transparent 85%, rgba(5, 5, 5, 0.95) 100%);
+    }
+
+    .hero-content-container {
+        justify-content: flex-start;
+        padding-left: 6%; /* Mantém o afastamento da borda */
+    }
+
+    .hero-card {
+        padding: 1.5rem 1.8rem; /* Card finíssimo */
+        border-radius: 16px;
+    }
+
+    .hero-title {
+        font-size: 2rem; /* Títulos micro e precisos */
+        line-height: 1.1;
+        margin-bottom: 0.6rem;
+        letter-spacing: -1px;
+    }
+
+    .hero-section-title {
+        font-size: 1.8rem; /* Tipografia fina para o section title */
+        line-height: 1.1;
+        margin-bottom: 0.6rem;
+        letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+        font-size: 0.85rem; /* Texto descritivo pequeno e legível */
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+
+    .metric-value {
+        font-size: 1.15rem; /* Números pequenos */
+    }
+
+    .hero-card-metrics {
+        gap: 1.5rem; /* Menor distância entre as métricas */
+    }
+}
+
+/* 5. Seção do Cardápio */
+.cardapio-section {
+    background-color: #090909;
+    position: relative;
+    z-index: 10;
+}
+
+.cardapio-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 100px;
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border-glass);
+    background: rgba(255, 255, 255, 0.02);
+    transition: var(--transition-smooth);
+}
+
+.filter-btn:hover, .filter-btn.active {
+    color: #000;
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 5px 15px rgba(226, 168, 87, 0.25);
+}
+
+/* Grid de Itens Assimétrico */
+.cardapio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.cardapio-item {
+    position: relative;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Aplicação de Assimetria Proposital */
+.cardapio-grid > .cardapio-item:nth-child(3n+1) {
+    transform: translateY(0);
+}
+.cardapio-grid > .cardapio-item:nth-child(3n+2) {
+    transform: translateY(20px);
+}
+.cardapio-grid > .cardapio-item:nth-child(3n+3) {
+    transform: translateY(-10px);
+}
+
+.item-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-family: var(--font-title);
+    font-size: 0.65rem;
+    font-weight: 750;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.item-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.item-title {
+    font-family: var(--font-title);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 1rem;
+}
+
+.item-ingredients {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.item-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.item-price {
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    font-weight: 750;
+    color: var(--text-white);
+}
+
+.btn-order {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--primary);
+    transition: var(--transition-smooth);
+}
+
+.btn-order:hover {
+    background: var(--primary);
+    color: #000;
+    border-color: var(--primary);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 5px 15px rgba(226, 168, 87, 0.3);
+}
+
+/* Banner de Combos */
+.combo-banner {
+    margin-top: 6rem;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.combo-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(226, 168, 87, 0.04), transparent);
+    transform: skewX(-30deg);
+    animation: shine 8s infinite linear;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-50%) skewX(-30deg); }
+    100% { transform: translateX(50%) skewX(-30deg); }
+}
+
+.combo-info h3 {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    font-weight: 750;
+    color: var(--text-white);
+    margin-bottom: 0.5rem;
+}
+
+.combo-info p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.combo-info strong {
+    color: var(--primary);
+}
+
+/* 6. Seção A Hamburgueria (Sobre) */
+.sobre-section {
+    background-color: var(--bg-dark);
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.sobre-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+.sobre-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+}
+
+.sobre-text strong {
+    color: var(--text-white);
+}
+
+/* Lista de Recursos */
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.feature-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: rgba(226, 168, 87, 0.08);
+    border: 1px solid rgba(226, 168, 87, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.feature-text h4 {
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 0.5rem;
+}
+
+.feature-text p {
+    color: var(--text-muted);
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* Elementos Visuais Assimétricos */
+.sobre-visual {
+    position: relative;
+    height: 500px;
+    width: 100%;
+}
+
+.metric-card {
+    position: absolute;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+    width: 200px;
+}
+
+.metric-card.top-left {
+    top: 0;
+    left: -20px;
+}
+
+.metric-card.bottom-right {
+    bottom: 20px;
+    right: -20px;
+}
+
+.metric-card .number {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.metric-card .label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.main-visual {
+    position: absolute;
+    top: 80px;
+    left: 40px;
+    right: 40px;
+    bottom: 100px;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.large-icon {
+    font-size: 4rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+}
+
+.main-visual h3 {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 1rem;
+}
+
+.main-visual p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* 7. Seção Contato */
+.contato-section {
+    background-color: #090909;
+    position: relative;
+    z-index: 10;
+}
+
+.contato-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+}
+
+.contato-info-panel {
+    padding: 3.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contato-info-panel h3 {
+    font-family: var(--font-title);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-white);
+    margin-bottom: 0.5rem;
+}
+
+.contato-info-panel .tagline {
+    color: var(--primary);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.contact-detail-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.contact-detail-item .icon {
+    font-size: 1.4rem;
+    color: var(--primary);
+    width: 24px;
+    text-align: center;
+    margin-top: 0.2rem;
+}
+
+.contact-detail-item .text strong {
+    font-family: var(--font-title);
+    font-size: 1rem;
+    color: var(--text-white);
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.contact-detail-item .text p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.contact-detail-item .text a {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.contact-detail-item .text a:hover {
+    color: var(--primary-hover);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+
+.social-icon:hover {
+    background: var(--primary);
+    color: #000;
+    border-color: var(--primary);
+    transform: translateY(-4px);
+}
+
+/* Formulário de Contato */
+.contato-form-panel {
+    padding: 3.5rem 3rem;
+}
+
+.contato-form-panel h3 {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.75rem;
+}
+
+.form-group label {
+    display: block;
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.6rem;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: rgba(5, 5, 5, 0.5);
+    border: 1px solid var(--border-glass);
+    border-radius: 6px;
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: var(--primary);
+    background: rgba(5, 5, 5, 0.8);
+    outline: none;
+    box-shadow: 0 0 15px rgba(226, 168, 87, 0.1);
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+/* 8. Rodapé */
+.main-footer {
+    background-color: var(--bg-dark);
+    border-top: 1px solid var(--border-glass);
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.main-footer p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.footer-credit {
+    font-family: var(--font-title);
+    color: rgba(226, 168, 87, 0.4) !important;
+    font-size: 0.75rem !important;
+}
+
+/* 9. Menu Mobile & Responsividade */
+.mobile-nav-active {
+    overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+    .cardapio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .cardapio-grid > .cardapio-item:nth-child(even) {
+        transform: translateY(20px);
+    }
+    .cardapio-grid > .cardapio-item:nth-child(odd) {
+        transform: translateY(0);
+    }
+    
+    .sobre-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    
+    .sobre-visual {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header & Navigation */
+    .mobile-menu-toggle {
+        display: flex;
+        z-index: 1001;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 350px;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-left: 1px solid var(--border-glass);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        z-index: 1000;
+        transition: var(--transition-smooth);
+    }
+    
+    .nav-menu.open {
+        right: 0;
+    }
+    
+    .header-cta {
+        display: none; /* Escondido no mobile para espaço */
+    }
+    
+    .mobile-menu-toggle.open .bar:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+    
+    .mobile-menu-toggle.open .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-toggle.open .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
+    
+    /* Hero Section Mobile */
+    .hero-video {
+        object-position: 85% center; /* Aponta a câmera do celular para o lado direito do vídeo (onde o hambúrguer está fisicamente localizado na filmagem) */
+    }
+
+    .hero-step {
+        max-width: 92%; /* Folga lateral no celular */
+        bottom: 5%; /* Rodapé fino flutuante */
+        left: 4%;
+        align-items: center; 
+    }
+
+    .hero-card {
+        padding: 1rem; /* Gaveta finíssima e elegante */
+        align-items: center;
+        text-align: center;
+        background: rgba(22, 17, 12, 0.45);
+        backdrop-filter: blur(20px) saturate(120%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-title {
+        font-size: 1.7rem;
+        letter-spacing: -0.5px;
+        margin-bottom: 0.2rem;
+    }
+    
+    .hero-section-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.2rem;
+        letter-spacing: -0.5px;
+    }
+    
+    .hero-subtitle {
+        display: none; /* Descrição ocultada para despoluir 100% o celular */
+    }
+
+    .hero-card-metrics {
+        justify-content: space-around;
+        gap: 1rem;
+        padding-top: 0.2rem;
+    }
+
+    .metric-item {
+        align-items: center;
+        text-align: center;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+    }
+    
+    .hero-actions .btn {
+        width: 100%;
+    }
+    
+    /* Cardápio & Seções */
+    .section-container {
+        padding: 5rem 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .cardapio-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .cardapio-grid > .cardapio-item {
+        transform: none !important;
+    }
+    
+    .combo-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+    }
+    
+    .combo-banner .btn {
+        width: 100%;
+    }
+    
+    .sobre-visual {
+        display: none; /* Esconde visual sobreposto no mobile para simplificar UX */
+    }
+    
+    .contato-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .contato-info-panel, .contato-form-panel {
+        padding: 2rem 1.5rem;
+    }
+}

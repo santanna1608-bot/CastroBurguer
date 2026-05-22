@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Castro Burguer | Hamburgueria Artesanal em São João de Meriti</title>
+    <meta name="description" content="Experimente o melhor hambúrguer artesanal de São João de Meriti. Blends de Angus grelhados no ponto certo, pão brioche selado e maionese exclusiva. Peça já!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos customizados -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Menu Superior Minimalista e Glassmorphism -->
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <a href="#" class="logo-container">
+                <img src="assets/logo.png" alt="Castro Burguer Logo" class="logo-img">
+                <span id="logo-text" class="logo-text"><span class="logo-accent">CASTRO</span> BURGUER</span>
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#hero-section" class="nav-link active">Home</a>
+                <a href="#cardapio" class="nav-link">Cardápio</a>
+                <a href="#sobre" class="nav-link">A Hamburgueria</a>
+                <a href="#contato" class="nav-link">Contato</a>
+            </nav>
+            <div class="header-cta">
+                <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" id="btn-pedir-topo">
+                    <i class="fa-solid fa-motorcycle"></i> Pedir Agora
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Abrir Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Seção Hero: Área de Rolagem do Vídeo (Apple-style Scrubbing) -->
+    <section class="hero" id="hero-section">
+        <div class="hero-sticky-wrapper">
+            <!-- Vídeo de fundo com opacidade inicial 0 para evitar flash -->
+            <video id="hero-video" class="hero-video" muted playsinline preload="auto"></video>
+            
+            <!-- Overlay escuro para garantir legibilidade dos textos -->
+            <div class="hero-overlay"></div>
+            
+            <!-- Elementos de Conteúdo que reagem ao Scroll -->
+            <div class="hero-content-container">
+                <div class="hero-step active" id="step-1" data-progress-start="0" data-progress-end="0.25">
+                    <div class="hero-card">
+                        <span class="badge">O Verdadeiro Artesanal</span>
+                        <h1 class="hero-title">Castro Classic</h1>
+                        <p class="hero-subtitle">A união perfeita do pão brioche macio com nosso suculento blend de Angus grelhado no ponto e maionese secreta.</p>
+                        <div class="hero-card-metrics">
+                            <div class="metric-item">
+                                <span class="metric-value">12k+</span>
+                                <span class="metric-label">VENDIDOS</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">ANGUS</span>
+                            </div>
+                        </div>
+                        <div class="scroll-indicator">
+                            <span class="mouse">
+                                <span class="wheel"></span>
+                            </span>
+                            <span class="text">Role para montar</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-step" id="step-2" data-progress-start="0.30" data-progress-end="0.55">
+                    <div class="hero-card">
+                        <span class="badge">Matéria-Prima Premium</span>
+                        <h2 class="hero-section-title">Blend Angus de 150g</h2>
+                        <p class="hero-subtitle">Carne selecionada moída diariamente e grelhada em alta temperatura para reter toda a suculência e o verdadeiro sabor defumado.</p>
+                        <div class="hero-card-metrics">
+                            <div class="metric-item">
+                                <span class="metric-value">150g</span>
+                                <span class="metric-label">POR BURGER</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value">300°C</span>
+                                <span class="metric-label">GRELHA DA BRASA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-step" id="step-3" data-progress-start="0.60" data-progress-end="0.85">
+                    <div class="hero-card">
+                        <span class="badge">Segredo do Chef</span>
+                        <h2 class="hero-section-title">Cheddar & Bacon</h2>
+                        <p class="hero-subtitle">Queijo cheddar derretido com perfeição sobre o blend e fatias crocantes de bacon artesanal defumado em lenha frutífera.</p>
+                        <div class="hero-card-metrics">
+                            <div class="metric-item">
+                                <span class="metric-value">Cheddar</span>
+                                <span class="metric-label">CREMOSO</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value">Bacon</span>
+                                <span class="metric-label">CROCANTE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-step" id="step-4" data-progress-start="0.90" data-progress-end="1.0">
+                    <div class="hero-card">
+                        <span class="badge">Pronto para Você</span>
+                        <h2 class="hero-section-title">Castro Burguer Montado</h2>
+                        <p class="hero-subtitle">Seu hambúrguer está completo, quente e pronto para ser entregue no conforto da sua casa com velocidade extrema.</p>
+                        <div class="hero-card-metrics">
+                            <div class="metric-item">
+                                <span class="metric-value">40min</span>
+                                <span class="metric-label">ENTREGA MÉDIA</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value">4.9/5</span>
+                                <span class="metric-label">AVALIAÇÃO</span>
+                            </div>
+                        </div>
+                        <div class="hero-actions">
+                            <a href="#cardapio" class="btn btn-primary btn-sm">Ver Cardápio</a>
+                            <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm"><i class="fa-solid fa-motorcycle"></i> Pedir Agora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Cardápio (Produtos) - Design Glassmorphism -->
+    <section class="cardapio-section" id="cardapio">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Menu do Chef</span>
+                <h2 class="section-title">Nosso Cardápio Artesanal</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">Hambúrgueres preparados com carne 100% Angus, ingredientes frescos e maionese exclusiva da casa.</p>
+            </div>
+            
+            <!-- Filtros do Cardápio -->
+            <div class="cardapio-filters">
+                <button class="filter-btn active" data-filter="todos">Todos</button>
+                <button class="filter-btn" data-filter="artesanais">Burgers Artesanais</button>
+                <button class="filter-btn" data-filter="smashes">Smash Burgers</button>
+                <button class="filter-btn" data-filter="porcoes">Batatas & Acompanhamentos</button>
+                <button class="filter-btn" data-filter="shakes">Milk-shakes</button>
+            </div>
+            
+            <!-- Grid de Produtos -->
+            <div class="cardapio-grid" id="cardapio-grid">
+                
+                <!-- Burger 1: Castro Classic (Artesanal) -->
+                <div class="cardapio-item glass-card" data-category="artesanais">
+                    <div class="item-tag">Campeão de Vendas</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Castro Classic</h3>
+                        <p class="item-ingredients">Pão brioche macio, blend artesanal de carne Angus 150g, queijo prato derretido, alface crespa, tomate fresco, cebola roxa e o icônico molho especial Castro.</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 28,90</span>
+                            <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer" class="btn-order" aria-label="Pedir Castro Classic">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Burger 2: Castro Cheddar & Bacon (Artesanal) -->
+                <div class="cardapio-item glass-card" data-category="artesanais">
+                    <div class="item-tag">O Favorito</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Castro Cheddar & Bacon</h3>
+                        <p class="item-ingredients">Pão brioche selado na manteiga, blend Angus suculento de 150g, uma generosa camada de cheddar cremoso e tiras de bacon crocante super sequinhas.</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 34,90</span>
+                            <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer" class="btn-order" aria-label="Pedir Castro Cheddar e Bacon">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Burger 3: Castro Smash Double (Smashes) -->
+                <div class="cardapio-item glass-card" data-category="smashes">
+                    <div class="item-content">
+                        <h3 class="item-title">Castro Smash Double</h3>
+                        <p class="item-ingredients">Pão brioche, dois blends smash de 70g prensados na chapa com crosta caramelizada, cheddar duplo derretido e maionese artesanal da casa.</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 26,90</span>
+                            <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer" class="btn-order" aria-label="Pedir Castro Smash Double">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Burger 4: Castro Gorgonzola (Artesanal) -->
+                <div class="cardapio-item glass-card" data-category="artesanais">
+                    <div class="item-tag">Premium</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Castro Gorgonzola</h3>
+                        <p class="item-ingredients">Pão de brioche, suculento blend Angus 150g, queijo gorgonzola derretido suavemente, cebola caramelizada artesanal e rúcula fresca.</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 37,90</span>
+                            <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer" class="btn-order" aria-label="Pedir Castro Gorgonzola">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Burger 5: Castro Chicken (Artesanal) -->
+                <div class="cardapio-item glass-card" data-category="artesanais">
+                    <div class="item-content">
+                        <h3 class="item-title">Castro Chicken</h3>
+                        <p class="item-ingredients">Pão de brioche, sobrecoxa de frango empanada com farinha panko super crocante, queijo prato, alface americana fresca e maionese de ervas finas.</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 29,90</span>
+                            <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer" class="btn-order" aria-label="Pedir Castro Chicken">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acompanhamento 1: Batata Rústica (Porções) -->
+                <div class="cardapio-item glass-card" data-category="porcoes">
+                    <div class="item-content">
+                        <h3 class="item-title">Batata Rústica Castro</h3>
+                        <p class="item-ingredients">Batatas rústicas com casca, cortadas em gomos, fritas até dourarem, finalizadas com páprica defumada especial e ramos de alecrim fresco.</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 18,90</span>
+                            <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer" class="btn-order" aria-label="Pedir Batata Rustica Castro">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acompanhamento 2: Batata Cheddar & Bacon (Porções) -->
+                <div class="cardapio-item glass-card" data-category="porcoes">
+                    <div class="item-tag">Para Compartilhar</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Batata Cheddar & Bacon</h3>
+                        <p class="item-ingredients">Uma porção generosa de batatas fritas palito super crocantes por fora e macias por dentro, cobertas com cheddar cremoso e farofa de bacon.</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 24,90</span>
+                            <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer" class="btn-order" aria-label="Pedir Batata Cheddar e Bacon">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sobremesa 1: Milk-shake Nutella Ninho (Shakes) -->
+                <div class="cardapio-item glass-card" data-category="shakes">
+                    <div class="item-tag">Especialidade</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Milk-shake Nutella com Leite Ninho</h3>
+                        <p class="item-ingredients">Milk-shake de 500ml feito com sorvete artesanal de creme batido com muito Leite Ninho e calda abundante de Nutella genuína na taça.</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 19,90</span>
+                            <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer" class="btn-order" aria-label="Pedir Milkshake Nutella Ninho">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sobremesa 2: Milk-shake Ovomaltine (Shakes) -->
+                <div class="cardapio-item glass-card" data-category="shakes">
+                    <div class="item-content">
+                        <h3 class="item-title">Milk-shake de Ovomaltine</h3>
+                        <p class="item-ingredients">Milk-shake de 500ml ultra cremoso de baunilha, batido com flocos crocantes de Ovomaltine e calda premium de chocolate belga.</p>
+                        <div class="item-footer">
+                            <span class="item-price">R$ 18,90</span>
+                            <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer" class="btn-order" aria-label="Pedir Milkshake Ovomaltine">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="combo-banner glass-card">
+                <div class="combo-info">
+                    <h3>Turbine sua Fome com o Combo Castro</h3>
+                    <p>Adicione <strong>Batata Individual + Refrigerante em Lata</strong> a qualquer hambúrguer do cardápio por apenas mais <strong>R$ 15,00</strong>.</p>
+                </div>
+                <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Adicionar Combo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção A Hamburgueria (Sobre Nós) - Layout Assimétrico -->
+    <section class="sobre-section" id="sobre">
+        <div class="section-container">
+            <div class="sobre-grid">
+                <div class="sobre-content">
+                    <span class="section-badge">Nossa Essência</span>
+                    <h2 class="section-title">Feito à Mão, Com Orgulho e Brasa</h2>
+                    <div class="title-underline left"></div>
+                    <p class="sobre-text">A <strong>Mac Castro Hamburgueria</strong> nasceu com um propósito claro: elevar o patamar do hambúrguer artesanal na Baixada Fluminense. Localizados em <strong>São João de Meriti, RJ</strong>, fundamos a hamburgueria com o compromisso de entregar não apenas comida, mas uma experiência culinária inesquecível.</p>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fa-solid fa-cow"></i></div>
+                            <div class="feature-text">
+                                <h4>Carne 100% Angus</h4>
+                                <p>Nossos blends são moídos diariamente com cortes selecionados de novilhas Angus certificadas. Zero conservantes, puro sabor bovino grelhado.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                            <div class="feature-text">
+                                <h4>Pão de Brioche Diário</h4>
+                                <p>Trabalhamos com pães artesanais assados na madrugada anterior, entregues frescos e selados em manteiga aviação de alta qualidade na chapa.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fa-solid fa-mortar-pestle"></i></div>
+                            <div class="feature-text">
+                                <h4>Maionese Secreta</h4>
+                                <p>Cada condimento em nosso restaurante é autoral. Nossa maionese verde artesanal é batida fresca a cada serviço com temperos frescos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lado Assimétrico visual (Cards empilhados com desalinhamento proposital) -->
+                <div class="sobre-visual">
+                    <div class="metric-card glass-card top-left">
+                        <span class="number">100%</span>
+                        <span class="label">Angus Certificado</span>
+                    </div>
+                    <div class="metric-card glass-card bottom-right">
+                        <span class="number">4.9/5</span>
+                        <span class="label">Avaliação dos Clientes</span>
+                    </div>
+                    <div class="visual-placeholder glass-card main-visual">
+                        <i class="fa-solid fa-fire-burner large-icon"></i>
+                        <h3>A Temperatura Exata</h3>
+                        <p>Nossa grelha opera a mais de 300°C para criar a reação de Maillard perfeita, caramelizando a superfície da carne mantendo todo o suco interno intacto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Contato / Localização -->
+    <section class="contato-section" id="contato">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Atendimento</span>
+                <h2 class="section-title">Fale Conosco e Localização</h2>
+                <div class="title-underline"></div>
+            </div>
+            
+            <div class="contato-grid">
+                
+                <!-- Info de Contato -->
+                <div class="contato-info-panel glass-card">
+                    <h3>Castro Burguer Ltda.</h3>
+                    <p class="tagline">O melhor burger artesanal de São João de Meriti</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-detail-item">
+                            <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="text">
+                                <strong>Endereço</strong>
+                                <p>R. Dr. José de Carvalho, 157 - Vila Tiradentes<br>São João de Meriti - RJ, 25525-250</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail-item">
+                            <div class="icon"><i class="fa-solid fa-clock"></i></div>
+                            <div class="text">
+                                <strong>Horário de Funcionamento</strong>
+                                <p>Terça a Domingo: 18:00h às 23:30h<br>Segunda-feira: Fechado</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail-item">
+                            <div class="icon"><i class="fa-brands fa-whatsapp"></i></div>
+                            <div class="text">
+                                <strong>Pedidos & Suporte</strong>
+                                <p><a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" rel="noopener noreferrer">Acessar Cardápio Digital (Anota AI)</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://pedido.anota.ai/loja/mac-castro-hamburgueria" target="_blank" class="social-icon" aria-label="Pedidos Anota AI"><i class="fa-solid fa-basket-shopping"></i></a>
+                        <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Mapa Dinâmico do Endereço -->
+                <div class="contato-map-panel glass-card" style="padding: 0; overflow: hidden; position: relative; min-height: 400px; display: flex;">
+                    <!-- Mapa Satélite do Google embebedado via iframe genérico -->
+                    <iframe src="https://maps.google.com/maps?q=R.+Dr.+Jos%C3%A9+de+Carvalho,+157+-+Vila+Tiradentes,+S%C3%A3o+Jo%C3%A3o+de+Meriti+-+RJ,+25525-250&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0; position: absolute; top:0; left:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Castro Burguer Ltda. Todos os direitos reservados. CNPJ sob consulta.</p>
+            <p class="footer-credit">Desenvolvido com sofisticação LF7 MKT para amantes de hambúrguer.</p>
+        </div>
+    </footer>
+
+    <!-- Lógica JavaScript Principal -->
+    <script src="app.js"></script>
+</body>
+</html>
