@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Valores para a interpolação linear (LERP) para suavidade cinematográfica
     let targetFraction = 0;
     let currentFraction = 0;
-    const easeFactor = 0.12; // Aumentado para resposta mais rápida e menos flutuação pesada (menos Lag)
+    const easeFactor = 0.05; // Coeficiente super-smooth (Deslize mais elástico e fluido, como manteiga)
     let animationFrameId = null;
     let isScrollActive = false;
 
@@ -136,10 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Modo Reverso: (1 - scrollFraction)
         const targetTime = video.duration * (1 - fraction);
         
-        // OTIMIZAÇÃO CRÍTICA (FPS THROTTLE): O vídeo MP4 sofre para decodificar frações micro-segundos.
-        // Nós só atualizamos o player se a diferença for maior que 0.04 segundos (equivale à percepção ocular de ~24fps).
-        // Isso elimina os travamentos do processador!
-        if (Math.abs(targetTime - lastVideoTime) > 0.04) {
+        // Com a GPU livre do filtro de vidro no celular, podemos atualizar a taxa máxima de quadros.
+        // Diferença mínima de tempo requerida é baixíssima para garantir frames contínuos (60fps)
+        if (Math.abs(targetTime - lastVideoTime) > 0.005) {
             video.currentTime = targetTime;
             lastVideoTime = targetTime;
         }

@@ -1159,11 +1159,7 @@ button {
     }
     /* Hero Section Mobile */
     .hero-video {
-        object-position: 75% center; /* Traz o arquivo de volta para a esquerda, forçando a borda a sair da visão da tela */
-        
-        /* Afastamento da câmera (Zoom Out) para afinar o hambúrguer */
-        transform: scale(0.85);
-        transform-origin: 75% center; /* Centraliza a redução exatamente na nova âncora */
+        object-position: 70% center; /* Traz o vídeo inteiro de volta. O corte fotográfico esquerdo voltará a se esconder para fora da tela. */
     }
 
     .hero-step {
@@ -1177,8 +1173,7 @@ button {
         padding: 1rem; /* Gaveta finíssima e elegante */
         align-items: center;
         text-align: center;
-        background: rgba(22, 17, 12, 0.45);
-        backdrop-filter: blur(20px) saturate(120%);
+        background: rgba(22, 17, 12, 0.90);
         border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
